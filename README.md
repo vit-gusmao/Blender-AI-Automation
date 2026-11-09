@@ -33,9 +33,8 @@ O projeto separa deliberadamente a inteligência (LLM/harness) da execução
    ferramentas** estruturadas (contrato do §6.1 do plano), recursos
    `blender://` e templates de prompt.
 2. **Dois caminhos de integração**:
-   - **Caminho A** — seu harness favorito (Codex, Claude Code, Cursor,
-     OpenCode ou outro cliente MCP) fala diretamente com o servidor.
-   - **Caminho B** — o **Universal Agent Gateway** (harness próprio) conecta
+   - **Caminho A** — seu harness fala diretamente com o servidor.
+   - **Caminho B** — o **Agent Gateway** (harness próprio) conecta
      modelos locais (Ollama, LM Studio) ou cloud (OpenAI, Anthropic, Gemini,
      endpoints compatíveis) ao mesmo servidor, inclusive sem tool calling
      nativo (fallback para JSON validado).
