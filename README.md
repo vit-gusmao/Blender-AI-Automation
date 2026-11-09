@@ -50,9 +50,9 @@ O projeto separa deliberadamente a inteligência (LLM/harness) da execução
 
 ```mermaid
 flowchart TD
-    H[Harness: Codex / Cursor / Claude Code / OpenCode] -->|MCP stdio ou Streamable HTTP + Bearer| S
+    H[Harness] -->|MCP stdio ou Streamable HTTP + Bearer| S
     G[Universal Agent Gateway<br/>harness próprio + Bearer] -->|MCP stdio subprocesso| S
-    P[LLMs: Ollama / LM Studio / OpenAI / Anthropic / Gemini / custom] --> G
+    P[LLM ] --> G
     S[Universal Blender MCP Server<br/>55 ferramentas + autorização + jobs SQLite] -->|HTTP local + token| B
     B[Bridge 127.0.0.1:8765<br/>fila serial + long-poll + watchdog] -->|poll| A
     A[Addon universal_mcp no Blender 3.6<br/>bpy.app.timers na thread principal] -->|envelope de resultado| B
