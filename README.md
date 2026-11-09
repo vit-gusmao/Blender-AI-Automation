@@ -57,7 +57,7 @@ flowchart TD
     B[Bridge 127.0.0.1:8765<br/>fila serial + long-poll + watchdog] -->|poll| A
     A[Addon universal_mcp no Blender 3.6<br/>bpy.app.timers na thread principal] -->|envelope de resultado| B
     A --> E[Blender 3.6<br/>bpy / bmesh / mathutils]
-    S -->|runtime externo autorizado| X[Processos externos<br/>python/node/... em workspace isolado]
+    S -->|runtime externo autorizado| X[Processos externos<br/>python em workspace isolado]
 ```
 
 Pontos essenciais da implementação:
