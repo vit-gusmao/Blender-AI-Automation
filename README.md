@@ -1,26 +1,12 @@
-# Universal Blender MCP
+# Blender AI Automation
 
 Automação do **Blender 3.6** (Windows) por LLMs e agentes via **Model Context
 Protocol (MCP)**, com execução real de operações 3D, controle de permissões,
 checkpoints e persistência de jobs.
 
-Implementação do plano de engenharia [`docs/Plan-Auto-Blender.txt`](docs/Plan-Auto-Blender.txt).
 O sistema executa operações no Blender (criar/modificar objetos, materiais,
 nodes, rigging, animação, física, render, import/export, Python controlado),
 em vez de apenas descrever como fazê-las.
-
-**Estado de verificação (08/11/2026):** o programa de auditoria de **45 bugs**
-foi implementado em 6 fases com TDD (RED→GREEN por correção) e revisão por
-fase. Resultados atuais: **400 testes externos** passando (pytest, Python
-3.15), smoke **22/22** dentro do **Blender 3.6 real** (`--background`,
-factory startup, SQLite temporário, asserts explícitos), parse dos scripts
-PowerShell em **5.1 e 7**, compilação do código compartilhado em **Python
-3.10.12**, conexão MCP real de ponta a ponta e ZIP do addon reconstruído e
-verificado por SHA-256. A matriz completa bug→teste→evidência está em
-[`docs/superpowers/plans/2026-11-08-audit-fix-evidence.md`](docs/superpowers/plans/2026-11-08-audit-fix-evidence.md).
-As limitações residuais verdadeiras estão listadas em
-[Limitações conhecidas](#limitações-conhecidas) — inclusive as que nenhum
-gate pode eliminar (ex.: Python dentro do Blender não é sandbox).
 
 ## Índice
 
@@ -124,7 +110,6 @@ Pontos essenciais da implementação:
 | `tests/` | Suítes `unit`, `integration`, `security`, `compatibility`, `blender_background` |
 | `storage/` | `projects/`, `checkpoints/`, `renders/`, `logs/`, `external_workspace/`, `jobs.db`, `bridge_token`, `http_token`, `gateway_token` |
 | `dist/` | ZIP do addon gerado por `package-addon.ps1` |
-| `docs/` | Plano de arquitetura original (fonte da especificação) e planos/evidências do programa de correção |
 
 ## Pré-requisitos
 
