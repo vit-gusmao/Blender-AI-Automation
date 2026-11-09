@@ -23,9 +23,6 @@ em vez de apenas descrever como fazê-las.
 - [Runtime externo (multilíngue)](#runtime-externo-multilíngue)
 - [Persistência e jobs](#persistência-e-jobs)
 - [Testes](#testes)
-- [Limitações conhecidas](#limitações-conhecidas)
-- [Solução de problemas](#solução-de-problemas)
-- [Roadmap](#roadmap)
 
 ## Visão geral
 
