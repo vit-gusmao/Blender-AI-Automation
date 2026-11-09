@@ -594,9 +594,3 @@ Estrutura real e comandos:
 Resultado atual nesta máquina: **400 passed** na suíte externa (pytest 9.x,
 Python 3.15) e **22/22** no smoke do Blender, com o código compartilhado
 compilando em Python 3.10.12 e os scripts PowerShell parseando em 5.1 e 7.
-A matriz completa bug→teste→evidência (RED/GREEN por bug) está em
-[`docs/superpowers/plans/2026-11-08-audit-fix-evidence.md`](docs/superpowers/plans/2026-11-08-audit-fix-evidence.md).
-
-A existência dos testes não implica cobertura total — rigging, física, NLA e
-nodes complexos não são exercitados pelo smoke, e a GUI interativa não é
-coberta por nenhum gate automatizado.
