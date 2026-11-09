@@ -1,0 +1,10 @@
+{
+  "name": "blender-universal",
+  "description": "Registro do Universal Blender MCP Server no Codex CLI",
+  "transport": "stdio",
+  "register_command": "codex mcp add blender-universal -- \"C:\\Blender\\RPA\\.venv\\Scripts\\python.exe\" -m universal_blender_mcp",
+  "list_command": "codex mcp list",
+  "command": "C:\\Blender\\RPA\\.venv\\Scripts\\python.exe",
+  "args": ["-m", "universal_blender_mcp"],
+  "notes": "install.ps1 valida o interpretador e regenera este caminho, inclusive com -SkipVenv."
+}

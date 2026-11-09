@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+dist/
+build/
+
+# Runtime artifacts
+storage/logs/*
+storage/jobs.db*
+storage/jobs_smoke.db*
+storage/bridge_token
+storage/external_workspace/*
+storage/renders/*
+storage/checkpoints/*
+storage/projects/*
+!storage/logs/.gitkeep
+!storage/renders/.gitkeep
+!storage/checkpoints/.gitkeep
+!storage/projects/.gitkeep
+!storage/external_workspace/.gitkeep
+
+# OS / editor
+Thumbs.db
+.DS_Store
+.superpowers/

@@ -1,0 +1,10 @@
+{
+  "name": "blender-universal",
+  "description": "Registro do Universal Blender MCP Server no Claude Code",
+  "transport": "stdio",
+  "register_command": "claude mcp add --transport stdio blender-universal -- \"C:\\Blender\\RPA\\.venv\\Scripts\\python.exe\" -m universal_blender_mcp",
+  "list_command": "claude mcp list",
+  "command": "C:\\Blender\\RPA\\.venv\\Scripts\\python.exe",
+  "args": ["-m", "universal_blender_mcp"],
+  "notes": "install.ps1 valida o interpretador e regenera este caminho, inclusive com -SkipVenv."
+}

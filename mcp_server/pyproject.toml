@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "universal-blender-mcp"
+version = "0.1.0"
+description = "Universal Blender MCP Server — automação do Blender 3.6 via Model Context Protocol"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Blender RPA" }]
+dependencies = [
+    "mcp[cli]>=2,<3",
+    "pydantic>=2,<3",
+    "httpx",
+    "fastapi",
+    "uvicorn",
+    "python-dotenv",
+    "pyyaml",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio"]
+
+[project.scripts]
+universal-blender-mcp = "universal_blender_mcp.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["../../tests"]
+
+[tool.setuptools.package-data]
+universal_blender_mcp = ['prompts/*.md', 'prompts/skills/*.md']

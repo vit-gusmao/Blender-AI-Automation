@@ -1,0 +1,84 @@
+# Universal Blender MCP — configuração da aplicação
+# Caminhos relativos são resolvidos a partir da raiz do projeto (C:\Blender\RPA).
+
+[bridge]
+host = "127.0.0.1"
+port = 8765
+# Token gerado automaticamente em storage/bridge_token na primeira execução.
+token_file = "storage/bridge_token"
+queue_max = 16
+command_timeout_s = 120
+poll_interval_s = 0.35
+heartbeat_timeout_s = 15
+
+[server]
+name = "universal-blender-mcp"
+version = "0.1.0"
+log_level = "INFO"
+transport = "stdio"          # stdio | streamable-http
+http_host = "127.0.0.1"
+http_port = 8766
+# Inicia a Bridge automaticamente caso ela não esteja acessível.
+autostart_bridge = true
+
+# Autenticação Bearer do transporte HTTP MCP (BUG-032): token ausente ou
+# errado → 401. Resolução: env http_auth_token_env → arquivo http_token_file
+# (gerado exclusivamente na primeira subida em loopback). Binding fora de
+# loopback é recusado sem token explicitamente configurado.
+http_auth_token_env = "BLENDER_MCP_HTTP_TOKEN"
+http_token_file = "storage/http_token"
+http_max_body_bytes = 1048576
+
+[storage]
+root = "storage"
+projects = "storage/projects"
+checkpoints = "storage/checkpoints"
+renders = "storage/renders"
+logs = "storage/logs"
+jobs_db = "storage/jobs.db"
+external_workspace = "storage/external_workspace"
+
+[gateway]
+default_provider = "local_ollama"
+max_turns = 24
+max_tool_calls_per_turn = 8
+request_timeout_s = 120
+http_host = "127.0.0.1"
+http_port = 8767
+worker_count = 2
+queue_max = 16
+max_runs = 100
+run_ttl_s = 86400
+max_events_per_run = 100
+max_event_bytes = 16384
+context_max_tokens = 24000
+planner_fallback = "fail"       # fail | direct (explicit execution without a plan)
+max_request_bytes = 131072
+max_prompt_chars = 32000
+max_verify_criteria = 100
+max_http_clients = 16
+http_timeout_s = 10
+auth_token_env = "BLENDER_GATEWAY_TOKEN"
+token_file = "storage/gateway_token"
+
+# Runtimes externos autorizados (§8 do plano). Permitir aqui NÃO ignora o
+# nível de autorização ADVANCED exigido por python_execute_external.
+[external_runtimes.python]
+executable = "python"
+args = []
+allowed = true
+
+[external_runtimes.node]
+executable = "node"
+args = []
+allowed = true
+
+[external_runtimes.powershell]
+executable = "powershell"
+args = ["-NoProfile", "-ExecutionPolicy", "Bypass"]
+allowed = false
+
+[external_runtime_limits]
+timeout_s = 300
+max_output_bytes = 1048576
+max_processes = 4

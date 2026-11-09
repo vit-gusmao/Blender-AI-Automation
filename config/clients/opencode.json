@@ -1,0 +1,10 @@
+{
+  "name": "blender-universal",
+  "description": "Registro do Universal Blender MCP Server no OpenCode",
+  "transport": "stdio",
+  "register_command": "opencode mcp add blender-universal -- \"C:\\Blender\\RPA\\.venv\\Scripts\\python.exe\" -m universal_blender_mcp",
+  "list_command": "opencode mcp list",
+  "command": "C:\\Blender\\RPA\\.venv\\Scripts\\python.exe",
+  "args": ["-m", "universal_blender_mcp"],
+  "notes": "install.ps1 valida o interpretador e regenera este caminho; streamable-http permanece disponível em http://127.0.0.1:8766/mcp."
+}

@@ -1,0 +1,70 @@
+# Políticas de segurança do servidor MCP (§14 do plano).
+# Níveis: read_only=1 | scene_write=2 | project_ops=3 | advanced=4
+
+authorization:
+  default_level: scene_write
+  # Sobreposições por ferramenta (nome exato do catálogo §6.1).
+  tool_levels:
+    python_execute_blender: advanced
+    python_execute_external: advanced
+    project_open: project_ops
+    project_save: project_ops
+    project_checkpoint: project_ops
+    asset_import: project_ops
+    asset_export: project_ops
+    object_delete: project_ops
+    addon_operator_invoke: project_ops
+    simulation_bake: project_ops
+    render_final: project_ops
+    render_preview: scene_write
+  # Além do nível da sessão, estas operações exigem approval: true na chamada.
+  # Ferramentas advanced e addon_operator_invoke(mode=INVOKE) são incluídas
+  # dinamicamente pelo servidor.
+  approval_required_tools:
+    - object_delete
+
+paths:
+  # Somente estes diretórios podem ser lidos/escritos por operações de arquivo.
+  allow:
+    - storage/projects
+    - storage/checkpoints
+    - storage/renders
+    - storage/external_workspace
+  deny:
+    - C:\Windows
+    - C:\Program Files
+
+python_execution:
+  allow_blender: true
+  allow_external: true
+  # Padrões bloqueados no código executado dentro do Blender (modo estrito).
+  strict_patterns:
+    - "subprocess"
+    - "os.system"
+    - "os.popen"
+    - "shutil.rmtree"
+    - "ctypes"
+    - "socket.socket"
+    - "urllib.request"
+    - "requests"
+    - "__import__"
+  require_approval: true
+
+external_execution:
+  allow: true
+  # Nome de um adaptador de sandbox efetivo registrado pelo host. Nulo por padrão.
+  backend: null
+  # Subprocesso comum NÃO é sandbox; requer este opt-in e o token na requisição.
+  allow_unsafe_host_execution: false
+  unsafe_approval_token: "I_ACKNOWLEDGE_UNSANDBOXED_HOST_EXECUTION"
+  # Executáveis autorizados no runtime externo (vazio = apenas runtimes de config/app.toml).
+  executables_allowlist: []
+  workspace_only: true
+
+checkpoints:
+  auto_before_destructive: true
+  max_keep: 20
+
+audit:
+  log_all: true
+  log_arguments: true

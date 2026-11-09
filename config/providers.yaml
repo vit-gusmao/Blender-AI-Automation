@@ -1,0 +1,74 @@
+# Registro de provedores de LLM do Universal Agent Gateway (§7.2 do plano).
+# api_key_env: variável de ambiente que contém a chave; null para serviços locais.
+
+providers:
+  local_ollama:
+    adapter: ollama
+    base_url: http://127.0.0.1:11434
+    model: qwen3
+    api_key_env: null
+    tool_calling: true
+    vision: false
+    context_window: 32768
+    max_output: 4096
+    parameters:
+      temperature: 0.2
+
+  local_lmstudio:
+    adapter: openai_compatible
+    base_url: http://127.0.0.1:1234/v1
+    model: MODEL_ID
+    api_key_env: null
+    tool_calling: true
+    vision: false
+    context_window: 32768
+    max_output: 4096
+    parameters:
+      temperature: 0.2
+
+  cloud_openai:
+    adapter: openai_compatible
+    base_url: https://api.openai.com/v1
+    model: gpt-4o
+    api_key_env: OPENAI_API_KEY
+    tool_calling: true
+    vision: true
+    context_window: 128000
+    max_output: 8192
+
+  cloud_anthropic:
+    adapter: anthropic
+    base_url: https://api.anthropic.com
+    model: claude-sonnet-4-5
+    api_key_env: ANTHROPIC_API_KEY
+    tool_calling: true
+    vision: true
+    context_window: 200000
+    max_output: 8192
+
+  cloud_gemini:
+    adapter: gemini
+    base_url: https://generativelanguage.googleapis.com/v1beta
+    model: gemini-2.0-flash
+    api_key_env: GEMINI_API_KEY
+    tool_calling: true
+    vision: true
+    context_window: 1000000
+    max_output: 8192
+
+  cloud_custom:
+    adapter: openai_compatible
+    base_url: https://provider.example/v1
+    model: MODEL_ID
+    api_key_env: CLOUD_API_KEY
+    tool_calling: true
+    vision: false
+    context_window: 32768
+    max_output: 4096
+
+# Papéis para troca de modelo durante o projeto (§7.4).
+roles:
+  planner: local_ollama
+  executor: local_ollama
+  reviewer: cloud_openai
+  vision: cloud_gemini

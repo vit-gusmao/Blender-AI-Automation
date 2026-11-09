@@ -1,0 +1,12 @@
+{
+  "name": "blender-universal",
+  "description": "Configuração mcp.json do Cursor para o Universal Blender MCP Server",
+  "target_file": ".cursor/mcp.json",
+  "mcpServers": {
+    "blender-universal": {
+      "command": "C:\\Blender\\RPA\\.venv\\Scripts\\python.exe",
+      "args": ["-m", "universal_blender_mcp"]
+    }
+  },
+  "notes": "install.ps1 valida o interpretador e regenera este caminho; copie mcpServers para o mcp.json do Cursor."
+}
